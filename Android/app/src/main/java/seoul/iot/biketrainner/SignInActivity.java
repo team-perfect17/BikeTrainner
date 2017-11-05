@@ -20,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -40,6 +41,7 @@ import static android.Manifest.permission.READ_CONTACTS;
  */
 public class SignInActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
+    private static final String TAG = "SignInActivity";
     /**
      * Id to identity READ_CONTACTS permission request.
      */
@@ -154,7 +156,9 @@ public class SignInActivity extends AppCompatActivity implements LoaderCallbacks
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, TrainingActivity.class);
+        Log.i(TAG, mEmailView.getText().toString());
+        intent.putExtra("id", mEmailView.getText().toString());
         startActivity(intent);
 
         if (mAuthTask != null) {

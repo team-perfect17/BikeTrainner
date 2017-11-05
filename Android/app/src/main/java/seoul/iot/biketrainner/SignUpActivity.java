@@ -91,14 +91,14 @@ public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks
             }
         });
 
-        Button mExitButton = (Button) findViewById(R.id.su_exit_button);
+        /*Button mExitButton = (Button) findViewById(R.id.su_close);
         mExitButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);

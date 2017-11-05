@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">BikeTrainner</string>
+    <string name="app_name">BikeTrainer</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_sign_in">Sign in</string>
+    <string name="serial_port">Synchronous Serial Port</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -19,6 +20,14 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="title_activity_sign_up">Sign up</string>
+    <string name="title_activity_sign_up">회원가입</string>
+    <string name="title_activity_connect_usb">ConnectUsbActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_training">대시보드</string>
+    <string name="title_activity_req_connect">장치 연결</string>
 
 </resources>

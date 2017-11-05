@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <item
+            android:id="@+id/nav_training"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="대시보드" />
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="라이딩 기록" />
+        <item
+            android:id="@+id/nav_scoreboard"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="심박 순위판" />
+        <item
+            android:id="@+id/nav_family"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="패밀리" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_menu_share"
+            android:title="프로필" />
+</menu>

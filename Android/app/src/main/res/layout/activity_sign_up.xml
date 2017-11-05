@@ -20,32 +20,55 @@
         android:visibility="gone" />
 
 
-    <FrameLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/si_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:orientation="horizontal">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/transparent"
+        >
 
-        <Button
-            android:id="@+id/su_exit_button"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="20dp"
-            android:paddingTop="0dp" />
-
-        <TextView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="Sign Up"
-            android:textStyle="bold"/>
-    </FrameLayout>
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/su_close"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/close" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="13.8sp"
+                android:textColor="#ffffff"
+                android:letterSpacing="0.05"
+                android:lineSpacingExtra="-1.8sp"
+                android:gravity="center"
+                android:text="@string/title_activity_req_connect" />
+
+        </FrameLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:textColor="#8c5879bf"
+        android:lineSpacingExtra="2sp"
+        tools:text="프로필" />
+
+    <ImageView
+        android:layout_width="112dp"
+        android:layout_height="112dp"
+        android:background="@drawable/photo"/>
 
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="200dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/email_login_form"
@@ -171,13 +194,160 @@
                 </android.support.design.widget.TextInputLayout>
             </FrameLayout>
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/su_name_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="27.5dp"
+                    android:background="@color/colorRed"
+                    android:text="USERNAME"/>
+
+                <TextView
+                    android:id="@+id/su_name_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6.8dp"
+                    android:layout_marginLeft="1.3dp"
+                    android:background="@color/colorRed"
+                    android:text="O"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/su_name_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/prompt_email"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/su_gender_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="27.5dp"
+                    android:background="@color/colorRed"
+                    android:text="USERNAME"/>
+
+                <TextView
+                    android:id="@+id/su_gender_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6.8dp"
+                    android:layout_marginLeft="1.3dp"
+                    android:background="@color/colorRed"
+                    android:text="O"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/su_gender_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/prompt_email"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/su_height_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="27.5dp"
+                    android:background="@color/colorRed"
+                    android:text="USERNAME"/>
+
+                <TextView
+                    android:id="@+id/su_height_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6.8dp"
+                    android:layout_marginLeft="1.3dp"
+                    android:background="@color/colorRed"
+                    android:text="O"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/su_height_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/prompt_email"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/su_weight_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="27.5dp"
+                    android:background="@color/colorRed"
+                    android:text="USERNAME"/>
+
+                <TextView
+                    android:id="@+id/su_weight_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6.8dp"
+                    android:layout_marginLeft="1.3dp"
+                    android:background="@color/colorRed"
+                    android:text="O"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/su_weight_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/prompt_email"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+            </FrameLayout>
 
             <Button
                 android:id="@+id/su_button"
                 style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_gravity="center_horizontal"
                 android:text="@string/action_sign_up"
                 android:textStyle="bold" />
 

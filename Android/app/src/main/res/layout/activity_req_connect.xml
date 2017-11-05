@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical"
+    tools:context="seoul.iot.biketrainner.ReqConnectActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/rc_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/transparent"
+        app:theme="@style/TransparentToolbar">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/rc_close"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/close" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="13.8sp"
+                android:textColor="#ffffff"
+                android:letterSpacing="0.05"
+                android:lineSpacingExtra="-1.8sp"
+                android:gravity="center"
+                android:text="@string/title_activity_req_connect" />
+
+        </FrameLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/req"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="17.5sp"
+        android:textColor="#9bb3dc"
+        android:letterSpacing="0.05"
+        android:lineSpacingExtra="5.5sp"
+        android:gravity="center_horizontal"
+        android:text="스마트폰을 장치에 꽂아주세요."
+        />
+
+</LinearLayout>
