@@ -111,6 +111,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/t_zone_circle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

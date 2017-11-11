@@ -12,6 +12,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContentResolverCompat;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -24,6 +25,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +36,7 @@ public class TrainingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "TrainingActivity";
+    private static final int ZONE_SIZE = 6;
 
     /*
      * Notifications from UsbService will be received here.
@@ -70,6 +73,8 @@ public class TrainingActivity extends AppCompatActivity
     private DrawerLayout mNavDrawerLayout;
     private Button mBtnEnd;
     private Button mBtnMenu;
+    private ImageView mIvZoneCircle;
+    private int[] ZONE_START = {50, 60, 70, 80, 90, 100};
 
     private final ServiceConnection usbConnection = new ServiceConnection() {
         @Override
@@ -91,11 +96,19 @@ public class TrainingActivity extends AppCompatActivity
         mBtnEnd = (Button) findViewById(R.id.t_end);
         mBtnMenu = (Button) findViewById(R.id.t_menu);
         mNavDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        heartDisplay = (TextView) findViewById(R.id.tv_heart);
+        mIvZoneCircle = (ImageView) findViewById(R.id.t_zone_circle);
+
+        //ZONE 시작 심박수 설정(ZONE_START[n] : n+1존 시작점)
+        ZONE_START[1] = 60;
+        ZONE_START[2] = 70;
+        ZONE_START[3] = 80;
+        ZONE_START[4] = 90;
+        ZONE_START[5] = 100;
 
         Intent intent = getIntent();
 
         mHandler = new MyHandler(this);
-        heartDisplay = (TextView) findViewById(R.id.tv_heart);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -207,15 +220,40 @@ public class TrainingActivity extends AppCompatActivity
         return true;
     }
 
+    private void setZone(int heart) {
+        //Zone 이미지 설정(heart 값에따라 image 변경)
+        if (heart < ZONE_START[1]) {
+            mIvZoneCircle.setBackground(getDrawable(R.drawable.zone_1));
+        }
+        else if (heart < ZONE_START[2]) {
+            mIvZoneCircle.setBackground(getDrawable(R.drawable.zone_2));
+        }
+        else if (heart < ZONE_START[3]) {
+            mIvZoneCircle.setBackground(getDrawable(R.drawable.zone_3));
+        }
+        else if (heart < ZONE_START[4]) {
+            mIvZoneCircle.setBackground(getDrawable(R.drawable.zone_4));
+        }
+        else if (heart < ZONE_START[5]) {
+            mIvZoneCircle.setBackground(getDrawable(R.drawable.zone_5));
+        }
+        else {
+            mIvZoneCircle.setBackground(getDrawable(R.drawable.zone_6));
+        }
+    }
 
     /*
      * This handler will be passed to UsbService. Data received from serial port is displayed through this handler
      */
     private static class MyHandler extends Handler {
         private final WeakReference<TrainingActivity> mActivity;
+        private int curHeart;
+        private String mstr;
 
         public MyHandler(TrainingActivity activity) {
             mActivity = new WeakReference<>(activity);
+            curHeart = 1;
+            mstr = "";
         }
 
         @Override
@@ -223,7 +261,7 @@ public class TrainingActivity extends AppCompatActivity
             switch (msg.what) {
                 case UsbService.MESSAGE_FROM_SERIAL_PORT:
                     String data = (String) msg.obj;
-                    mActivity.get().heartDisplay.setText(data);
+                    //mActivity.get().heartDisplay.setText(data);
                     break;
                 case UsbService.CTS_CHANGE:
                     Toast.makeText(mActivity.get(), "CTS_CHANGE",Toast.LENGTH_LONG).show();
@@ -233,8 +271,53 @@ public class TrainingActivity extends AppCompatActivity
                     break;
                 case UsbService.SYNC_READ:
                     String buffer = (String) msg.obj;
-                    mActivity.get().heartDisplay.setText(buffer);
+                    if (stringAppend(buffer)) {
+                        try {
+                            mActivity.get().heartDisplay.setText(mstr);
+                            setZone(Integer.parseInt(mstr));
+                            mstr = "";
+                        } catch (Exception e) {
+
+                        }
+                    }
+                    //setZone(Integer.parseInt(buffer));
                     break;
+            }
+        }
+
+        private boolean stringAppend(String buffer) {
+            char[] arrC = buffer.toCharArray();
+
+            if (arrC[arrC.length - 1] >= '0' && arrC[arrC.length - 1] <= '9') {
+                mstr += buffer;
+                return false;
+            } else {
+                for (int i = 0; i < arrC.length && (arrC[arrC.length - 1] >= '0' && arrC[arrC.length - 1] <= '9'); i++) {
+                    mstr += String.valueOf(arrC[i]);
+                }
+                return true;
+            }
+        }
+
+        private void setZone(int heart) {
+            //Zone 이미지 설정(heart 값에따라 image 변경)
+            if (heart < mActivity.get().ZONE_START[1]) {
+                mActivity.get().mIvZoneCircle.setBackground(mActivity.get().getDrawable(R.drawable.zone_1));
+            }
+            else if (heart < mActivity.get().ZONE_START[2]) {
+                mActivity.get().mIvZoneCircle.setBackground(mActivity.get().getDrawable(R.drawable.zone_2));
+            }
+            else if (heart < mActivity.get().ZONE_START[3]) {
+                mActivity.get().mIvZoneCircle.setBackground(mActivity.get().getDrawable(R.drawable.zone_3));
+            }
+            else if (heart < mActivity.get().ZONE_START[4]) {
+                mActivity.get().mIvZoneCircle.setBackground(mActivity.get().getDrawable(R.drawable.zone_4));
+            }
+            else if (heart < mActivity.get().ZONE_START[5]) {
+                mActivity.get().mIvZoneCircle.setBackground(mActivity.get().getDrawable(R.drawable.zone_5));
+            }
+            else {
+                mActivity.get().mIvZoneCircle.setBackground(mActivity.get().getDrawable(R.drawable.zone_6));
             }
         }
     }
